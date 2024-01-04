@@ -14,16 +14,56 @@ public class OneOfEachStats {
 		int seed = Integer.parseInt(args[1]);
 		// Initailizes a random numbers generator with the given seed value
         Random generator = new Random(seed);  
+		int totalChildren = 0;
+		int twochildlren = 0;
+		int threechildren = 0;
+		int fourormore = 0;
+		for(int i = 0; i<T; i++){
+			int childrenPerFamily=0;
+			boolean b = false;
+			boolean g = false;
+			while (!b || !g){
+				double prob = generator.nextDouble();
+				if (prob < 0.5){
+					b = true;
+				} else 
+				{
+					g = true;
+				}
+				totalChildren++;
+				childrenPerFamily++;
+			} 
+			if (childrenPerFamily==2) 
+			{
+				twochildlren++;
+			}
+			else if(childrenPerFamily==3)
+			{
+				threechildren++;
+			}else if(childrenPerFamily >= 4)
+			{
+				fourormore++;
+			}
+		}
+		double average = (totalChildren/(double)T);
+		 System.out.print("Average: "+ average+ " children to get at least one of each gender.");
+		 System.out.println();
+		 System.out.println("Number of families with 2 children: " + twochildlren);
+		 System.out.println("Number of families with 3 children: " + threechildren);
+		 System.out.println("Number of families with 4 or more children: " + fourormore);
+		 String mode;
 		
-		//// In the previous version of this program, you used a statement like:
-		//// double rnd = Math.random();
-		//// Where "rnd" is the variable that stores the generated random value.
-		//// In this version of the program, replace this statement with:
-		//// double rnd = generator.nextDouble();
-		//// This statement will generate a random value in the range [0,1),
-		//// just like you had in the previous version, except that the 
-		//// randomization will be based on the given seed.
-		//// This is the only change that you have to do in the program.
-		    
+		 if (twochildlren > threechildren && twochildlren > fourormore) {mode = "2";}
+		 else if (threechildren > twochildlren && threechildren > fourormore) {mode = "3";}
+		 else if (fourormore > twochildlren && fourormore > threechildren) {mode = "4 or more";}
+		 else if (twochildlren == threechildren && twochildlren > fourormore) {mode = "2";}
+		 else if (twochildlren == fourormore && twochildlren > threechildren) {mode = "2";}
+		 else if (threechildren == fourormore && threechildren> twochildlren) {mode = "3";}
+		 else {mode = "4 or more";}
+		 
+	
+		System.out.println("The most common number of children is " + mode + ".");
+	
+		}
 	}
 }
