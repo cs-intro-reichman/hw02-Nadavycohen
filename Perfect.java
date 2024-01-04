@@ -19,7 +19,7 @@ public class Perfect {
 			}
 			
 				else {
-					System.out.print(n + " is not a perfect number");
+					System.out.println(n + " is not a perfect number");
 				}
 			}
 		}
